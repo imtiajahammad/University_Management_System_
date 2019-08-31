@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "EditTeacherFromList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Depts = ViewBag.Depts;
+    var Designations = ViewBag.Designations;
+}
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+</head>
+
+
+
+<body>
+    <div align="center">
+        @if (ViewBag.Message != null)
+        {
+            <span id="success-alert" class="text-info">@ViewBag.Message</span>
+        }
+    </div>
+
+
+    <br />
+    <br />
+
+   
+
+    <form method="post" action="EditTeacherFromList">
+        <fieldset>
+            <legend>Edit Teacher Info</legend>
+            <input type="hidden" name="courseId" value="@Model.TeacherId" />
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Teacher Name" minlength="5" name="TeacherName" value="@Model.TeacherName" required>
+                <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Address</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Teacher Address" name="TeacherAddress" value="@Model.TeacherAddress" required>
+                <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input class="form-control" aria-describedby="emailHelp" placeholder="Enter Teacher Email" type="text" name="TeacherEmail" value="@Model.TeacherEmail" required>
+                <small id="emailHelp" class="form-text text-muted fade ">Credit can not be less than 0.5 and more than 5.0</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Contact Number</label>
+                <input class="form-control" aria-describedby="emailHelp" placeholder="Enter Teacher Number" type="text" name="TeacherNumber" value="@Model.TeacherNumber" required>
+                <small id="emailHelp" class="form-text text-muted fade ">Credit can not be less than 0.5 and more than 5.0</small>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleSelect1">Designation</label>
+                <select class="form-control" id="exampleSelect1" required name="departmentId">
+                    <option value="0"></option>
+                    @foreach (var a in Designations)
+            {
+                if (a.DesignationId == Model.DesignationId)
+                {
+                    <option selected value="@a.DesignationId">@a.Designation</option>
+        }
+        else
+        {
+            <option value="@a.DesignationId">@a.Designation</option>
+}
+}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleSelect1">Department</label>
+                <select class="form-control" id="exampleSelect1" required name="DepartmentId">
+                    <option></option>
+                    @foreach (var a in Depts)
+            {
+                if (a.DepartmentId == @Model.DepartmentId)
+                {
+                    <option selected value="@a.DepartmentId">@a.DepartmentName</option>
+        }
+        else
+        {
+            <option value="@a.DepartmentId">@a.DepartmentName</option>
+}
+}
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("ViewAllTeachers", "Teacher")'">View List</button>
+            <button type="submit" class="btn btn-info">Submit</button>
+
+
+
+        </fieldset>
+    </form>
+</body>
+
+</html>
+
+

@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "EditDepartmentFromList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+
+
+<body>
+
+
+
+
+
+    <div align="center">
+        @if (ViewBag.Message != null)
+        {
+            <span id="success-alert">@ViewBag.Message</span>
+        }
+    </div>
+
+
+
+
+    <div class="col-lg-offset-1 col-md-10">
+        @*<div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Edit Department</h2>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div class="container   ">
+                        <div class="row col-md-12">
+                            <form method="post" action="EditDepartmentFromList" class="form-horizontal col-md-12">
+
+                                <input type="hidden" name="departmentId" value="@Model.DepartmentId" />
+
+
+
+
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-2">Department Code</label>
+                                    <div class="col-md-10"><input class="form-control" type="text" maxlength="7" minlength="2" name="DepartmentCode" value="@Model.DepartmentCode" required /> </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-2">department name:</label>
+                                    <div class="col-md-10"><input class="form-control" type="text" name="Departmentname" value="@Model.DepartmentName" required /> </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+
+                                    <div class="col-md-4 col-md-offset-8 col-xs-6 col-xs-offset-6  btn-group">
+                                        <input class="btn btn-default col-md-6 col-xs-6" type="button" value="Cancel" onclick="location.href='@Url.Action("ViewAllDepartments", "Department")'" />
+                                        <input class="btn btn-default col-md-6 col-xs-6" type="submit" value="Update" />
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        <form method="post" action="EditDepartmentFromList">
+            <fieldset>
+                <legend>Save Department</legend>
+                <input type="hidden" name="departmentId" value="@Model.DepartmentId" />
+                <div class="form-group">
+                    <label for="departmentCode">Department Code</label>
+                    <input type="text" class="form-control" id="departmentCode" aria-describedby="emailHelp" placeholder="Enter Department Code" maxlength="7" minlength="2" name="DepartmentCode" value="@Model.DepartmentCode" required>
+                    <small id="emailHelp" class="form-text text-muted">Department Code must be unique</small>
+                </div>
+                <div class="form-group">
+                    <label for="departmentName">Department Name</label>
+                    <input type="text" class="form-control" id="departmentName" aria-describedby="emailHelp" placeholder="Enter Department Name"  name="Departmentname" value="@Model.DepartmentName" required>
+                    <small id="emailHelp" class="form-text text-muted">Department Name must be unique</small>
+                </div>
+
+
+                <button type="submit" class="btn btn-info">Update</button>
+                <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("ViewDepartments", "Department")'">Cancel</button>
+            </fieldset>
+        </form>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,59 @@
+﻿@using UniversityManagementSystem06.Models;
+@{
+    ViewBag.Title = "ViewDepartments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<DepartmentModel> list = ViewBag.DepartmentList;
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <h3 align="center"><p class="text-muted">Deparments with Code and Name</p></h3>
+    <div align="center">
+        @if (ViewBag.MessageViewDepartments != null)
+        {
+            <span>@ViewBag.MessageViewDepartments</span>
+        }
+
+    </div>
+
+    @*<div class="col-md-offset-1 col-md-10">
+
+        </div>*@
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr class=" badge-secondary">
+                <th scope="col">Deparment Code</th>
+                <th scope="col">Deparment Name</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DepartmentModel aDepartmentModel in list)
+            {
+                <tr class="">
+                    <th> @aDepartmentModel.DepartmentCode </th>
+                    <td> @aDepartmentModel.DepartmentName </td>
+                    <td> <a href="@Url.Action("EditDepartmentFromList", "Department", new { DepartmentId=aDepartmentModel.DepartmentId})">Edit</a> | <a href="@Url.Action("DeleteDepartmentFromList", "Department", new { DepartmentId=aDepartmentModel.DepartmentId})">Delete</a> </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div >
+        <button  style="float:right;" type="button" class="btn btn-info" onclick="location.href='@Url.Action("ViewDepartments", "Department")'">Refresh</button>
+        <button  style="float:right;" type="button" class="btn btn-info" onclick="location.href='@Url.Action("SaveDepartment", "Department")'">Add New</button>
+    </div>
+
+</body>
+</html>
+
+
+

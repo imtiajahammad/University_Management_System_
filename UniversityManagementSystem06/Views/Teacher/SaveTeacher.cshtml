@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewBag.Title = "SaveTeacher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var designations = ViewBag.designations;
+    var departments = ViewBag.departments;
+}
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+<body>
+    <div align="center">
+        @if (ViewBag.Message != null)
+        {
+            <div id="msgId">  <span id="success-alert" class="text-danger">@ViewBag.Message</span> </div>
+        }
+    </div>
+
+
+    @*<div class="col-md-offset-1 col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Save Teacher</h2>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div class="container  ">
+                        <div class="row col-md-12">
+                            <form method="post" action="SaveTeacher" class="form-horizontal col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-2">Teacher Name</label>
+                                    <div class="col-md-10"><input placeholder="Enter Teacher Name" class="form-control" type="text" name="TeacherName" id="nameId" required /> </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-2">Teacher Address</label>
+                                    <div class="col-md-10"><input placeholder="Enter Teacher Address" class="form-control" type="text" name="TeacherAddress" id="addressId" required /></div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-2">Teacher Email</label>
+                                    <div class="col-md-10">  <input placeholder="Enter Teacher Email" class="form-control" type="email" name="TeacherEmail" id="emailId" required />   </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-2">Teacher Number </label>
+                                    <div class="col-md-10"> <input placeholder="Enter Teacher Phone Number" class="form-control" type="tel" name="TeacherNumber" id="numberId" required />    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-2 ">Teacher Designation</label>
+                                    <div class="col-md-10">
+                                        <select class="form-control" required name="DesignationId" id="designationDropdownId">
+                                            <option></option>
+                                            @foreach (var a in designations)
+                                            {
+                                                <option value="@a.DesignationId">@a.Designation</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-2">Department</label>
+                                    <div class="col-md-10">
+                                        <select class="form-control" required name="DepartmentId" id="departmentDropdownId">
+                                            <option></option>
+                                            @foreach (var aDepartmentModel in departments)
+                                            {
+                                                <option value="@aDepartmentModel.DepartmentId">@aDepartmentModel.DepartmentName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-2">Credit to be taken </label>
+                                    <div class="col-md-10">
+                                        <input placeholder="Enter Credit to be taken" class="form-control" type="number" min="1" name="TeacherCreditToBeTaken" id="creditId" required />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+
+                                    <div class="col-md-4 col-md-offset-8 col-xs-6 col-xs-offset-6  btn-group">
+                                        <input class="btn btn-default col-md-6 col-xs-6" type="button" value="View List" onclick="location.href='@Url.Action("ViewAllTeachers", "Teacher")'" />
+                                        <input class="btn btn-default col-md-6 col-xs-6" type="submit" value="Submit" id="submitBtnId" />
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <div>
+        <form method="post" action="SaveTeacher">
+            <fieldset>
+                <legend>Save Course</legend>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Teacher Name</label>
+                    <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Teacher Name" name="TeacherName" id="nameId" required>
+                    <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Teacher Address</label>
+                    <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Teacher Address" name="TeacherAddress" id="addressId" required>
+                    <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter Teacher Email" name="TeacherEmail" required>
+                    <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Contact No</label>
+                    <input type="tel" class="form-control" aria-describedby="emailHelp" placeholder="Enter Teacher Number" name="TeacherNumber" required>
+                    <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelect1">Course Department</label>
+                    <select class="form-control" id="DesignationId" required name="DesignationId">
+                        <option value="0"></option>
+                        @foreach (var a in designations)
+            {
+                <option value="@a.DesignationId">@a.Designation</option>
+}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelect1">Course Department</label>
+                    <select class="form-control" id="exampleSelect1" required name="departmentId">
+                        <option value="0"></option>
+                        @foreach (var a in departments)
+            {
+                <option value="@a.DepartmentId">@a.DepartmentName</option>
+}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Credit To Be Taken</label>
+                    <input type="number" min="1" class="form-control" aria-describedby="emailHelp" placeholder="Enter Teacher Number" name="TeacherCreditToBeTaken" required>
+                    <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("ViewAllTeachers", "Teacher")'">View List</button>
+
+            </fieldset>
+        </form>
+
+    </div>
+
+
+</body>
+
+</html>
+
+
+
+
+
+<script type='text/javascript'>
+    $(function () {
+        @*$(window).on('load', function () {
+            // your logic here`enter code here`
+
+
+           // $("#msgId").show().delay(3000).fadeOut();
+           // $("#msgId").show().fadeIn('slow').delay(5000000000).hide();
+             @if (@ViewBag.Message != null)
+             {
+                 $('#msgId').hide().html(data).fadeIn('slow').delay(5000).hide(1);
+             }
+
+             });*@
+    });
+
+
+</script>
+
+

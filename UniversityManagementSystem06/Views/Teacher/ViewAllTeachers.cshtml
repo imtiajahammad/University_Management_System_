@@ -1,0 +1,83 @@
+﻿@using UniversityManagementSystem06.Models;
+@{
+    ViewBag.Title = "ViewAllTeachers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<TeacherModel> list = ViewBag.TeacherList;
+}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+<body>
+
+    <h3 align="center"><p class="text-muted">View All Teachers</p></h3>
+    <div align="center">
+        @if (ViewBag.Message != null)
+        {
+            <span id="success-alert" class="text-primary">@ViewBag.Message</span>
+        }
+        <br />
+    </div>
+    @if (list.Count != 0)
+    {
+
+
+
+        <table class="table table-hover" align="center">
+            <thead>
+                <tr>
+                    <th scope="col"> <div class="text-center"> Name</div> </th>
+                    <th scope="col"><div class="text-center"> Address</div></th>
+                    <th scope="col"><div class="text-center"> Email</div></th>
+                    <th scope="col"><div class="text-center"> Number</div></th>
+                    <th scope="col"><div class="text-center"> Designation</div></th>
+                    <th scope="col"><div class="text-center">Department</div></th>
+                    <th scope="col"><div class="text-center">Credit Be Taken</div></th>
+                    <th scope="col"><div class="text-center ">Action</div></th>
+
+
+                </tr>
+            <thead>
+            <tbody>
+                @foreach (TeacherModel aTeacherModel in list)
+                {
+                <tr>
+                    <td align="center">@aTeacherModel.TeacherName</td>
+                    <td align="center">@aTeacherModel.TeacherAddress</td>
+                    <td align="center">@aTeacherModel.TeacherEmail</td>
+                    <td align="center">@aTeacherModel.TeacherNumber</td>
+
+                    <td align="center">@aTeacherModel.Designation.Designation</td>
+
+                    <td align="center">@aTeacherModel.Department.DepartmentName</td>
+                    <td align="center">@aTeacherModel.TeacherCreditToBeTaken</td>
+                    <td align="center"> 
+                        <a href="@Url.Action("EditTeacherFromList", "Teacher", new { teacherId=aTeacherModel.TeacherId})">Edit</a> | <a href="@Url.Action("DeleteTeacherFromList", "Teacher", new { teacherId=aTeacherModel.TeacherId})" > Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+    }
+    <div>
+        <button style="float:right;" type="button" class="btn btn-info" onclick="location.href='@Url.Action("ViewAllTeachers", "Teacher")'">Refresh</button>
+        <button style="float:right;" type="button" class="btn btn-info" onclick="location.href='@Url.Action("SaveTeacher", "Teacher")'">Add New</button>
+    </div>
+
+
+
+
+
+</body>
+</html>
+
+

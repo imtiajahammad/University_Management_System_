@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "EditCourseFromList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var deptList = ViewBag.Depts;
+    var semesterList = ViewBag.Sems;
+}
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+
+
+<body>
+
+
+    <br />
+    <br />
+
+
+    <div align="center">
+        @if (ViewBag.Message != null)
+        {
+            <span id="success-alert" class="i">@ViewBag.Message</span>
+        }
+    </div>
+
+    <br />
+    <form method="post" action="EditCourseFromList">
+        <fieldset>
+            <legend>Edit Course</legend>
+            <input type="hidden" name="courseId" value="@Model.courseId" />
+            <div class="form-group">
+                <label for="exampleInputEmail1">Course Code</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Course Code" minlength="5" name="courseCode" value="@Model.courseCode" required>
+                <small id="emailHelp" class="form-text text-muted">Code must be at least 5 characters long</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Course Name</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Course Name" name="courseName" value="@Model.courseName"  required>
+                <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Course Credit</label>
+                <input class="form-control" aria-describedby="emailHelp" placeholder="Select Course Credit" type="number" name="courseCredit"  value="@Model.courseCredit" max="5.0" min="0.5" step="0.5" required>
+                <small id="emailHelp" class="form-text text-muted ">Credit can not be less than 0.5 and more than 5.0</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleTextarea">Course Description</label>
+                <textarea class="form-control" id="exampleTextarea" name="courseDescription" rows="3" value="@Model.courseDescription" placeholder="course Description">@Model.courseDescription</textarea>
+                @*<input class="form-control" aria-describedby="emailHelp" placeholder="course Description" type="text" name="courseDescription" value="@Model.courseDescription">*@
+            </div>
+            <div class="form-group">
+                <label for="exampleSelect1">Course Department</label>
+                <select class="form-control" id="exampleSelect1" required name="departmentId">
+                    <option value="0"></option>
+                    @foreach (var a in deptList)
+                    {
+                    if (a.DepartmentId == Model.departmentId)
+                    {
+                            <option selected value="@a.DepartmentId">@a.DepartmentName</option>
+                    }
+                    else
+                    {
+                            <option value="@a.DepartmentId">@a.DepartmentName</option>
+                    }
+    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleSelect1">Course Semester</label>
+                <select class="form-control" id="exampleSelect1" required name="semesterId">
+                    <option></option>
+                    @foreach (var a in semesterList)
+                     {
+                        if (a.semesterId == @Model.semesterId)
+                        {
+                        <option selected value="@a.semesterId">@a.semesterName</option>
+                        }
+                        else
+                        {
+                                        <option value="@a.semesterId">@a.semesterName</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("ViewAllCourses", "Course")'">View List</button>
+            <button type="submit" class="btn btn-info">Submit</button>
+
+
+
+        </fieldset>
+    </form>
+
+
+</body>
+
+</html>
+

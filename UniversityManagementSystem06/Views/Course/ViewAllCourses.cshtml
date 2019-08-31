@@ -1,0 +1,86 @@
+﻿@using UniversityManagementSystem06.Models;
+@{
+    ViewBag.Title = "ViewAllCourses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<CourseModel> list = ViewBag.CourseList;
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+
+    <link href="~/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+    <link href="~/customDesign/css/ViewDepartmentsCss.css" rel="stylesheet" />
+
+</head>
+<body>
+    <h3 align="center"><p class="text-muted">View All Courses Details</p></h3>
+    <div align="center">
+        @if (ViewBag.MessageViewCourses != null)
+        {
+            <span>@ViewBag.MessageViewCourses</span>
+        }
+        <br />
+
+    </div>
+    @if (list.Count != 0)
+    {
+
+
+
+        <table class="table table-hover" align="center">
+            <thead>
+                <tr>
+                    <th scope="col"><div class="text-center">Course Code </div></th>
+                    <th scope="col"><div class="text-center">Course Name </div></th>
+                    <th scope="col"><div class="text-center">Course Credit</div></th>
+                    <th scope="col"><div class="text-center">Course Description </div></th>
+                    <th scope="col"><div class="text-center">Course Department </div></th>
+                    <th scope="col"><div class="text-center">Course Semester </div></th>
+                    <th scope="col"><div class="text-center ">Action</div></th>
+                </tr>
+            <thead>
+            <tbody>
+                @foreach (CourseModel aCourseModel in list)
+                {
+                    <tr>
+                        <td align="center">@aCourseModel.courseCode</td>
+                        <td align="center">@aCourseModel.courseName</td>
+                        <td align="center">@aCourseModel.courseCredit</td>
+                        <td align="center">@aCourseModel.courseDescription</td>
+
+                        <td align="center">@aCourseModel.Department.DepartmentName</td>
+
+                        <td align="center">@aCourseModel.Semester.semesterName</td>
+
+                        <td align="center"> <a href="@Url.Action("EditCourseFromList", "Course", new { courseId=aCourseModel.courseId})">Edit</a> | <a href="@Url.Action("DeleteCourseFromList", "Course", new { courseId=aCourseModel.courseId})">Delete</a> </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+    }
+    <div>
+        <button style="float:right;" type="button" class="btn btn-info" onclick="location.href='@Url.Action("ViewAllCourses", "Course")'">Refresh</button>
+        <button style="float:right;" type="button" class="btn btn-info" onclick="location.href='@Url.Action("SaveCourse", "Course")'">Add New</button>
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>
+

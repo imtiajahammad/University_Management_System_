@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/simplex.bootstrap.css" rel="stylesheet" />
+</head>
+
+
+<body style="background-color:aliceblue">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+
+    <div class=" fixed-top navbar-light bg-light">
+        <ul class="nav nav-tabs" style="background-color:ghostwhite">
+            <li class="nav-item">
+                <a class="nav-link @*active*@" data-toggle="tab" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Department</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="@Url.Action("SaveDepartment", "Department")">Save Department</a>
+                    @*<div class="dropdown-divider"></div>*@
+                    <a class="dropdown-item" href="@Url.Action("ViewDepartments", "Department")">View Departments</a>
+
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Course</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="@Url.Action("SaveCourse", "Course")">Save Course</a>
+                    @*<div class="dropdown-divider"></div>*@
+                    <a class="dropdown-item" href="@Url.Action("ViewAllCourses", "Course")">View Courses</a>
+
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Teacher</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="@Url.Action("SaveTeacher", "Teacher")">Save Department</a>
+                    @*<div class="dropdown-divider"></div>*@
+                    <a class="dropdown-item" href="@Url.Action("ViewAllTeachers", "Teacher")">View Departments</a>
+
+                </div>
+            </li>
+
+
+        </ul>
+
+    </div>
+
+    <br />
+    <br />
+
+    <div class="container body-content" >
+        @RenderBody()
+        @*<hr />*@
+        @*<footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <div id="footer">
+            <div class="navbar navbar-inner  navbar-fixed-bottom  ">
+                <p class="muted credit form-group"><center> by Imtiaj Ahammad</center></p>
+            </div>
+        </div>
+        </footer>*@
+    </div>
+    <footer>
+        <div id="footer">
+            <hr />
+            <div class="navbar navbar-inner  navbar-fixed-bottom  ">
+                <p class="muted credit form-group"><center>&copy;  by Imtiaj Ahammad</center></p>
+            </div>
+        </div>
+
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
