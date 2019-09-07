@@ -104,7 +104,7 @@ namespace UniversityManagementSystem06.Controllers
         /// <param name="deptId"></param>
         /// <returns></returns>
         public JsonResult GetTeacherByDeptId(int deptId)
-        {
+        {            
             CourseAssignManager aCourseAssignManager = new CourseAssignManager();
             List<TeacherModel> teachers = new List<TeacherModel>();
             teachers = aCourseAssignManager.GetTeachersByDeptId(deptId);
