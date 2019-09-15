@@ -33,6 +33,21 @@ namespace UniversityManagementSystem06.DataAccessLogics.CourseAssignLogics
             aSqlConnection.Close();
             return courseIdFromAssignedTeachers;
         }
+        public bool IsCourseAlreadyAssigned(int courseId)
+        {
+            SqlConnection aSqlConnection = new SqlConnection(connectionString);
+            string query = "Select * from courseAssignToTeacher_tbl where CourseID=@courseid";
+            SqlCommand aSqlCommand = new SqlCommand(query, aSqlConnection);
+            aSqlCommand.Parameters.Clear();
+            aSqlCommand.Parameters.AddWithValue('@courseid', courseId);
+            aSqlConnection.Open();
+            SqlDataReader aSqlDataReader = aSqlCommand.ExecuteReader();
+            if (aSqlDataReader.HasRows)
+            {
+                return true;
+            }
+            return false;            
+        }
         public int SaveCourseAssignToTeacher(CourseAssignToTeacherModel courseAssignToTeacherModel)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -192,17 +207,20 @@ namespace UniversityManagementSystem06.DataAccessLogics.CourseAssignLogics
             while (reader.Read())
             {
                 CourseAssignToTeacherModel aCourseAssignToTeacherModel = new CourseAssignToTeacherModel();
-                aCourseAssignToTeacherModel.CourseAssignToTeacherId = Convert.ToInt32(reader["ss"].ToString());
-                aCourseAssignToTeacherModel.DepartmentId = Convert.ToInt32(reader[""].ToString());
-                aCourseAssignToTeacherModel.TeacherId = Convert.ToInt32(reader[""].ToString());
-                aCourseAssignToTeacherModel.CourseId = Convert.ToInt32(reader[""].ToString());
+                aCourseAssignToTeacherModel.CourseAssignToTeacherId = Convert.ToInt32(reader["id"].ToString());
+                aCourseAssignToTeacherModel.DepartmentId = Convert.ToInt32(reader["departmentID"].ToString());
+                aCourseAssignToTeacherModel.TeacherId = Convert.ToInt32(reader["teacherID"].ToString());
+                aCourseAssignToTeacherModel.CourseId = Convert.ToInt32(reader["courseID"].ToString());
                 aCourseAssignToTeacherModel.Department = aCourseAssignManager.GetSingleDepartmentByDeptId(aCourseAssignToTeacherModel.DepartmentId);
                 aCourseAssignToTeacherModel.Teacher = aCourseAssignManager.GetSingleTeacherByTeacherId(aCourseAssignToTeacherModel.TeacherId);
                 aCourseAssignToTeacherModel.Course = aCourseAssignManager.GetSingleCourseByCourseId(aCourseAssignToTeacherModel.CourseId);
+                aCourseAssignToTeacherModel.TeacherRemainingCredit = aCourseAssignManager.GetRemainingCreditFromAssignedTeachers(aCourseAssignToTeacherModel.TeacherId);
                 coursesAssignToTeacher.Add(aCourseAssignToTeacherModel);
             }
-
+            con.Close();
             return coursesAssignToTeacher;
         }
+
+
     }
 }
