@@ -13,8 +13,7 @@ namespace UniversityManagementSystem06.Models
         public DepartmentModel Department { get; set; }
         public int TeacherId { get; set; }
         public TeacherModel Teacher { get; set; }
-        //public int TeacherCreditToBeTaken { get; set; }
-        //public int TeacherRemainingCredit { get; set; }
+        public int TeacherRemainingCredit { get; set; }
         public int CourseId { get; set; }
         public CourseModel Course { get; set; }
     }

@@ -28,7 +28,7 @@
     <div>
         <form method="post" action="AssignTeacher" id="formId">
             <fieldset>
-                <legend>Save Course</legend>
+                <legend>Assign Course</legend>
                 <div class="form-group">
                     <label for="exampleSelect1">Course Department</label>
                     <select class="form-control" id="departmentDropdownId" required name="departmentId">
@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Remaining Credit:</label>
-                    <input type="text" class="form-control" aria-describedby="emailHelp"  name="TeacherRemainingCredit" readonly id="remainingCreditInputId" required>
+                    <input type="text" class="form-control" aria-describedby="emailHelp" name="TeacherRemainingCredit" readonly id="remainingCreditInputId" required>
                     <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
                 </div>
                 <div class="form-group">
@@ -76,7 +76,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Credit</label>
-                    <input type="tel" class="form-control" aria-describedby="emailHelp" readonly id="courseCreditId"  required>
+                    <input type="tel" class="form-control" aria-describedby="emailHelp" readonly id="courseCreditId" required>
                     <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
                 </div>
                 <button type="submit" class="btn btn-info">Submit</button>
@@ -90,7 +90,7 @@
 
 <script type='text/javascript'>
     $(function () {
-        
+
         $("#departmentDropdownId").change(function () {//for every change course other options should be changed
             debugger;
             var departmentId = $("#departmentDropdownId").val();
@@ -216,8 +216,8 @@
                 $("#courseNameId").val("");
                 $("#courseCreditId").val("");
                             var courseName = "";
-            var courseCredit = 0;
-            var jasonData = { courseId: courseIdd };
+                var courseCredit = 0;
+                var jasonData = { courseId: courseIdd };
                 $.ajax({// to get courseName & courseCredit
                 type: "POST",
                         url: '@Url.Action("GetCourseModelByCourseId", "CourseAssignToTeacher")',

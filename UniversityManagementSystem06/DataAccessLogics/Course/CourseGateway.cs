@@ -134,6 +134,41 @@ namespace UniversityManagementSystem06.DataAccessLogics.Course
             connection.Close();
             return courses;
         }
+
+        
+        public List<CourseModel> GetAllCoursesNotAssignedToTeacher()
+        {
+            DepartmentManager aDepartmentManager = new DepartmentManager();
+            SemesterManager aSemesterManager = new SemesterManager();
+            List<CourseModel> courses = new List<CourseModel>();
+            SqlConnection connection = new SqlConnection(connectionString);
+            string query = "select * from course_tbl where courseid not in (select CourseId from courseAssignToTeacher_tbl)";
+            //string query = "SELECT course_tbl.courseId, course_tbl.courseCode,course_tbl.courseName, " +
+            //    "course_tbl.courseCredit, course_tbl.courseDescription, department_tbl.departmentName, " +
+            //    "semester_tbl.semester FROM course_tbl " +
+            //    "INNER JOIN department_tbl ON department_tbl.departmentId = course_tbl.departmentId " +
+            //    "INNER JOIN semester_tbl ON semester_tbl.id = course_tbl.semesterId; ";
+            SqlCommand command = new SqlCommand(query, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                CourseModel aCourseModel = new CourseModel();
+                aCourseModel.courseId = Convert.ToInt32(reader["courseId"].ToString());
+                aCourseModel.courseCode = reader["courseCode"].ToString();
+                aCourseModel.courseName = reader["courseName"].ToString();
+                aCourseModel.courseCredit = Convert.ToDouble(reader["courseCredit"].ToString());
+                aCourseModel.courseDescription = reader["courseDescription"].ToString();
+                aCourseModel.departmentId = int.Parse(reader["departmentId"].ToString());
+                aCourseModel.semesterId = int.Parse(reader["semesterId"].ToString());
+                aCourseModel.Department = aDepartmentManager.GetDepartmentById(aCourseModel.departmentId);
+                aCourseModel.Semester = aSemesterManager.GetSemesterById(aCourseModel.semesterId);
+                courses.Add(aCourseModel);
+            }
+
+            connection.Close();
+            return courses;
+        }
         public CourseModel GetSingleCourseModel(int courseId)
         {
             DepartmentManager aDepartmentManager = new DepartmentManager();
@@ -294,6 +329,38 @@ namespace UniversityManagementSystem06.DataAccessLogics.Course
             DepartmentManager aDepartmentManager = new DepartmentManager();
             SqlConnection con = new SqlConnection(connectionString);
             string query = "SELECT * FROM course_tbl WHERE departmentId=@departmentId";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@departmentId", deptId);
+            con.Open();
+            SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+            List<CourseModel> courses = new List<CourseModel>();
+            if (aSqlDataReader.HasRows)
+            {
+                while (aSqlDataReader.Read())
+                {
+                    CourseModel aCourseModel = new CourseModel();
+                    aCourseModel.courseId = Convert.ToInt32(aSqlDataReader["courseId"].ToString());
+                    aCourseModel.courseCode = aSqlDataReader["courseCode"].ToString();
+                    aCourseModel.courseName = aSqlDataReader["courseName"].ToString();
+                    aCourseModel.courseCredit = Convert.ToDouble(aSqlDataReader["courseCredit"].ToString());
+                    aCourseModel.courseDescription = aSqlDataReader["courseDescription"].ToString();
+                    aCourseModel.departmentId = int.Parse(aSqlDataReader["departmentId"].ToString());
+                    aCourseModel.semesterId = int.Parse(aSqlDataReader["semesterId"].ToString());
+                    aCourseModel.Department = aDepartmentManager.GetDepartmentById(aCourseModel.departmentId);
+                    aCourseModel.Semester = aSemesterManager.GetSemesterById(aCourseModel.semesterId);
+                    courses.Add(aCourseModel);
+                }
+            }
+            con.Close();
+            return courses;
+        }
+        public List<CourseModel> GetCourseListNotAssignedByDeptId(int deptId)
+        {
+            SemesterManager aSemesterManager = new SemesterManager();
+            DepartmentManager aDepartmentManager = new DepartmentManager();
+            SqlConnection con = new SqlConnection(connectionString);
+            string query = "SELECT * FROM course_tbl WHERE departmentId=@departmentId and courseId not in (select CourseId from courseAssignToTeacher_tbl)";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@departmentId", deptId);

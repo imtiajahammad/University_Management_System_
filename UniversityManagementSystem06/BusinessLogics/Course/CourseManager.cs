@@ -23,6 +23,13 @@ namespace UniversityManagementSystem06.BusinessLogics.Course
             return courses;
         }
 
+        public List<CourseModel> ViewAllCoursesNotAssignedToTeacher()
+        {
+            List<CourseModel> courses = new List<CourseModel>();
+            courses = aCourseGateway.GetAllCoursesNotAssignedToTeacher();
+            return courses;
+        }
+
         public int UpdateCourse(CourseModel aCourseModel)
         {
             {
@@ -49,6 +56,11 @@ namespace UniversityManagementSystem06.BusinessLogics.Course
         {
             return aCourseGateway.GetCourseListByDeptId(deptId);
         }
+        public List<CourseModel> GetCourseListNotAssignedByDeptId(int deptId)
+        {
+            return aCourseGateway.GetCourseListNotAssignedByDeptId(deptId);
+        }
+        
 
         public string SaveCourse(CourseModel aCourseModel)
         {

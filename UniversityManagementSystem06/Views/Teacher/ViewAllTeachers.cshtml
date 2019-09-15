@@ -31,7 +31,7 @@
 
         <table class="table table-hover" align="center">
             <thead>
-                <tr>
+                <tr class="">
                     <th scope="col"> <div class="text-center"> Name</div> </th>
                     <th scope="col"><div class="text-center"> Address</div></th>
                     <th scope="col"><div class="text-center"> Email</div></th>
@@ -47,7 +47,7 @@
             <tbody>
                 @foreach (TeacherModel aTeacherModel in list)
                 {
-                <tr>
+                <tr class=" badge-secondary">
                     <td align="center">@aTeacherModel.TeacherName</td>
                     <td align="center">@aTeacherModel.TeacherAddress</td>
                     <td align="center">@aTeacherModel.TeacherEmail</td>

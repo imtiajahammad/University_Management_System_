@@ -34,6 +34,7 @@ namespace UniversityManagementSystem06.Controllers
                 ViewBag.MessageViewCourses = "AssignedTeacher Updated Successfully";
             }
             ViewBag.CourseAssignToTeacherModelList = CourseAssignToTeachers;
+            
             return View();
         }
         //public ActionResult ViewAllCourses(int? messageFromEdit)
@@ -192,7 +193,40 @@ namespace UniversityManagementSystem06.Controllers
         [HttpGet]
         public ActionResult EditAssignedTeacher(int id, int? message)
         {
-            return View();
+            if (message != null)
+            {
+                if (message == 0)
+                {
+                    ViewBag.Message = "Sorry! Course Assign Update Failed !!";
+                }
+                else if (message == 5)
+                {
+                    ViewBag.Message = "Sorry! Course Code Exists !!";
+
+                }
+                else if (message == 6)
+                {
+                    ViewBag.Message = "Sorry! Course Name Exists !!";
+
+                }
+
+            }
+
+            CourseAssignManager aCourseAssignManager = new CourseAssignManager();
+            ViewBag.Departments = aCourseAssignManager.GetAllDepartments();
+            ViewBag.Teachers = aCourseAssignManager.GetAllTeachers();
+            ViewBag.CourseCodeList = aCourseAssignManager.GetAllCourseCodes();
+
+
+            CourseAssignToTeacherModel aCourseAssignToTeacherModel = new CourseAssignToTeacherModel();
+            aCourseAssignToTeacherModel = aCourseAssignManager.GetAssignedCourseToTeacherModelById(id);
+
+
+
+            ViewBag.Departments = aCourseAssignManager.GetAllDepartments();
+            ViewBag.Teachers = aCourseAssignManager.GetAllTeachers();
+            ViewBag.CourseCodeList = aCourseAssignManager.GetAllCourseCodes();
+            return View(aCourseAssignToTeacherModel);
         }
         [HttpPost]
         public ActionResult EditAssignedTeacher(CourseAssignToTeacherModel courseAssignToTeacherModel)

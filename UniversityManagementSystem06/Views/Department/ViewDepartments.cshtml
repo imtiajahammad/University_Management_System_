@@ -29,7 +29,7 @@
 
     <table class="table table-hover">
         <thead>
-            <tr class=" badge-secondary">
+            <tr class="">
                 <th scope="col">Deparment Code</th>
                 <th scope="col">Deparment Name</th>
                 <th scope="col">Action</th>
@@ -38,7 +38,7 @@
         <tbody>
             @foreach (DepartmentModel aDepartmentModel in list)
             {
-                <tr class="">
+                <tr class=" badge-secondary">
                     <th> @aDepartmentModel.DepartmentCode </th>
                     <td> @aDepartmentModel.DepartmentName </td>
                     <td> <a href="@Url.Action("EditDepartmentFromList", "Department", new { DepartmentId=aDepartmentModel.DepartmentId})">Edit</a> | <a href="@Url.Action("DeleteDepartmentFromList", "Department", new { DepartmentId=aDepartmentModel.DepartmentId})">Delete</a> </td>

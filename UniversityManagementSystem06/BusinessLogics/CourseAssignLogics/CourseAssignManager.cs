@@ -42,7 +42,7 @@ namespace UniversityManagementSystem06.BusinessLogics.CourseAssignLogics
             //DepartmentManager aDepartmentManager = new DepartmentManager();
             CourseManager aCourseManager = new CourseManager();
             //CourseAssignGateway aCourseAssignGateway = new CourseAssignGateway();
-            return aCourseManager.ViewAllCourses();
+            return aCourseManager.ViewAllCoursesNotAssignedToTeacher();
         }
 
         public List<TeacherModel> GetTeachersByDeptId(int deptId)
@@ -59,8 +59,9 @@ namespace UniversityManagementSystem06.BusinessLogics.CourseAssignLogics
             //DepartmentManager aDepartmentManager = new DepartmentManager();
             CourseManager aCourseManager = new CourseManager();
             //CourseAssignGateway aCourseAssignGateway = new CourseAssignGateway();
-            return aCourseManager.GetCourseListByDeptId(deptId);
+            return aCourseManager.GetCourseListNotAssignedByDeptId(deptId);
         }
+
         public int GetCreditByTeacherId(int teacherId)
         {
             TeacherManager aTeacherManager = new TeacherManager();
@@ -128,6 +129,13 @@ namespace UniversityManagementSystem06.BusinessLogics.CourseAssignLogics
             }
 
         }
+        public int GetRemainingCreditFromAssignedTeachers(int teacherid)
+        {
+            int totalCredit = GetCreditByTeacherId(teacherid);
+            int assignedCredit = GetAssignedCreditByTeacherId(teacherid);
+            return (totalCredit - assignedCredit);
+        }
+
         public bool IsCourseExist(int courseID)
         {
             //TeacherManager aTeacherManager = new TeacherManager();
@@ -214,5 +222,11 @@ namespace UniversityManagementSystem06.BusinessLogics.CourseAssignLogics
             CourseAssignGateway aCourseAssignGateway = new CourseAssignGateway();
             return aCourseAssignGateway.GetAllCourseAssignedTeachers();
         }
+        public bool IsCourseAlreadyAssigned(int courseId)
+        {
+            CourseAssignGateway aCourseAssignGateway = new CourseAssignGateway();
+            return aCourseAssignGateway.IsCourseAlreadyAssigned(courseId);
+        }
+
     }
 }

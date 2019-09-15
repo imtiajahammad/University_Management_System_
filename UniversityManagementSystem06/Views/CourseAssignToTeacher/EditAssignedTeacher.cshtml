@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "EditAssignedTeacher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var departments = ViewBag.Departments;
+    var teachers = ViewBag.Teachers;
+    var courseCodes = ViewBag.CourseCodeList;
+}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <br />
+    <br />
+    <div align="center">
+        @if(ViewBag.Message != null)
+        {
+            <span id="success-alert" class="">@ViewBag.Message</span>
+        }
+    </div>
+    <br />
+    <form method="post" action="EditAssignedTeacher">
+        <fieldset>
+            <legend>Edit Assigned Course</legend>
+            <input type="hidden" name="courseId" value="@Model.CourseAssignToTeacherId" />
+            <div class="form-group">
+                <label for="exampleSelect1">Course Department</label>
+                <select class="form-control" id="exampleSelect1" required name="departmentId">
+                    <option value="0"></option>
+                    @foreach (var a in departments)
+                    {
+                        if (a.DepartmentId == Model.DepartmentId)
+                        {
+                            <option selected value="@a.DepartmentId">@a.DepartmentName</option>
+                        }
+                        else
+                        {
+                            <option value="@a.DepartmentId">@a.DepartmentName</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleSelect1">Course Teacher</label>
+                <select class="form-control" id="exampleSelect1" required name="TeacherId">
+                    <option value="0"></option>
+                    @foreach (var a in teachers)
+                    {
+                        if (a.TeacherId == Model.TeacherId)
+                        {
+                            <option selected value="@a.TeacherId">@a.TeacherName</option>
+                        }
+                        else
+                        {
+                            <option value="@a.TeacherId">@a.TeacherName</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Credit to be taken:</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" name="TeacherCreditToBeTaken" readonly id="creditTakenInputId" required value="@Model.Teacher.TeacherCreditToBeTaken">
+                <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Remaining Credit:</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" name="TeacherRemainingCredit" readonly id="remainingCreditInputId" required value="@Model.TeacherRemainingCredit">
+                <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleSelect1">Course Code</label>
+                <select class="form-control" id="exampleSelect1" required name="CourseId">
+                    <option value="0"></option>
+                    @foreach (var a in courseCodes)
+                    {
+                        if (a.courseId == Model.courseId)
+                        {
+                            <option selected value="@a.courseId">@a.courseCode</option>
+                        }
+                        else
+                        {
+                            <option value="@a.courseId">@a.courseCode</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="email" class="form-control" aria-describedby="emailHelp" readonly id="courseNameId" required value="@Model.Course.courseName" >
+                <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Credit</label>
+                <input type="tel" class="form-control" aria-describedby="emailHelp" readonly id="courseCreditId" required value="@Model.Course.courseCredit" >
+                <small id="emailHelp" class="form-text text-muted fade">Code must be at least 5 characters long</small>
+            </div>
+
+
+
+            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("ViewAllAssignedTeachers", "CourseAssignToTeacher")'">View List</button>
+            <button type="submit" class="btn btn-info">Submit</button>
+
+
+
+        </fieldset>
+    </form>
+
+
+</body>
+
+</html>
+

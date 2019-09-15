@@ -38,7 +38,7 @@
 
         <table class="table table-hover" align="center">
             <thead>
-                <tr>
+                <tr class="">
                     <th scope="col"><div class="text-center">Course Code </div></th>
                     <th scope="col"><div class="text-center">Course Name </div></th>
                     <th scope="col"><div class="text-center">Course Credit</div></th>
@@ -51,7 +51,7 @@
             <tbody>
                 @foreach (CourseModel aCourseModel in list)
                 {
-                    <tr>
+                    <tr class=" badge-secondary">
                         <td align="center">@aCourseModel.courseCode</td>
                         <td align="center">@aCourseModel.courseName</td>
                         <td align="center">@aCourseModel.courseCredit</td>

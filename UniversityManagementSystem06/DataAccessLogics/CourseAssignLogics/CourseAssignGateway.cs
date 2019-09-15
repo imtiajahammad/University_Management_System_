@@ -11,7 +11,6 @@ namespace UniversityManagementSystem06.DataAccessLogics.CourseAssignLogics
 {
     public class CourseAssignGateway:ConnectionString
     {
-
         //DepartmentManager aDepartmentManager = new DepartmentManager();
         //CourseManager aCourseManager = new CourseManager();
         //TeacherManager aTeacherManager = new TeacherManager();
@@ -39,7 +38,7 @@ namespace UniversityManagementSystem06.DataAccessLogics.CourseAssignLogics
             string query = "Select * from courseAssignToTeacher_tbl where CourseID=@courseid";
             SqlCommand aSqlCommand = new SqlCommand(query, aSqlConnection);
             aSqlCommand.Parameters.Clear();
-            aSqlCommand.Parameters.AddWithValue('@courseid', courseId);
+            aSqlCommand.Parameters.AddWithValue("@courseid", courseId);
             aSqlConnection.Open();
             SqlDataReader aSqlDataReader = aSqlCommand.ExecuteReader();
             if (aSqlDataReader.HasRows)
