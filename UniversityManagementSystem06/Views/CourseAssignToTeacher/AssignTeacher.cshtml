@@ -92,7 +92,7 @@
     $(function () {
 
         $("#departmentDropdownId").change(function () {//for every change course other options should be changed
-            debugger;
+            //debugger;
             var departmentId = $("#departmentDropdownId").val();
             if (departmentId == null || departmentId == "") {
                 //alert(departmentId + "+NULL");
@@ -112,7 +112,7 @@
                 $("#courseCreditId").val("");
                 //alert(departmentId + "+ELSE")
                 var jasonData = { deptId: departmentId };
-                debugger;
+                //debugger;
             $.ajax({//to get the list of teachers from selected department
                     type: "POST",
                     url: '@Url.Action("GetTeacherByDeptId", "CourseAssignToTeacher")',
@@ -153,7 +153,7 @@
             //$("#remainingCreditInputId").empty();
             ///var teacher = $("#teacherDropdownId :selected").text();
             var teacherIdd = $("#teacherDropdownId").val();
-            debugger;
+            //debugger;
             if (teacherIdd == null || teacherIdd=="") {
 
                 //alert(teacherIdd +"null");
@@ -202,7 +202,7 @@
         });
 
         $("#courseCodeDropdownId").change(function () {// to fill up Name & Credit according to courseCode dropdown
-            debugger;
+            //debugger;
             //$("#courseNameId").val("");
             //$("#courseCreditId").val("");
             ///var teacher = $("#teacherDropdownId :selected").text();
