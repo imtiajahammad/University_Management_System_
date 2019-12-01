@@ -234,15 +234,24 @@ namespace UniversityManagementSystem06.Controllers
             return View();
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult DeleteAssignedTeacher()
         {
             return View();
-        }
-        [HttpPost]
+        }*/
+        //[HttpPost]
         public ActionResult DeleteAssignedTeacher(int id)
         {
-            return View();
+            CourseAssignManager aCourseAssignManager = new CourseAssignManager();
+            int rowsEffected = aCourseAssignManager.DeleteAssignedCourseByCourseAssignId(id);//aCourseManager.DeleteCourse(courseId);
+            if (rowsEffected > 0)
+            {
+                return RedirectToAction("ViewAllAssignedTeachers");
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
