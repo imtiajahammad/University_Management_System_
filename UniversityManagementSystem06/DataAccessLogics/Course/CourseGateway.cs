@@ -387,5 +387,32 @@ namespace UniversityManagementSystem06.DataAccessLogics.Course
             con.Close();
             return courses;
         }
+
+        public List<CourseStatisticsModel> GetCourseStaticsByDeptId(int deptId)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "GetCourseStatisticsInfo";
+            cmd.Parameters.AddWithValue("@deptId", deptId);
+            con.Open();
+            SqlDataReader aSqlDataReader = cmd.ExecuteReader();
+            List<CourseStatisticsModel> courseStatistics = new List<CourseStatisticsModel>();
+            if (aSqlDataReader.HasRows)
+            {
+                while (aSqlDataReader.Read())
+                {
+                    CourseStatisticsModel aCourseStatisticsModel = new CourseStatisticsModel();
+                    aCourseStatisticsModel.Coursecode = aSqlDataReader["courseCode"].ToString();
+                    aCourseStatisticsModel.Coursecode = aSqlDataReader["courseName"].ToString();
+                    aCourseStatisticsModel.Coursecode = aSqlDataReader["semester"].ToString();
+                    aCourseStatisticsModel.Coursecode = aSqlDataReader["teacherName"].ToString();
+                    courseStatistics.Add(aCourseStatisticsModel);
+                }
+            }
+            con.Close();
+            return courseStatistics;
+        }
     }
 }

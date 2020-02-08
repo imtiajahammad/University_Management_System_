@@ -22,24 +22,19 @@ namespace UniversityManagementSystem06.BusinessLogics.Course
             courses = aCourseGateway.GetAllCourses();
             return courses;
         }
-
         public List<CourseModel> ViewAllCoursesNotAssignedToTeacher()
         {
             List<CourseModel> courses = new List<CourseModel>();
             courses = aCourseGateway.GetAllCoursesNotAssignedToTeacher();
             return courses;
         }
-
         public int UpdateCourse(CourseModel aCourseModel)
         {
             {
                 int rowAffected = aCourseGateway.UpdateCourse(aCourseModel);
                 return rowAffected;
             }
-
-
         }
-
         public List<DepartmentModel> GetDepartmentList()
         {
             List<DepartmentModel> departmentList = new List<DepartmentModel>();
@@ -50,8 +45,6 @@ namespace UniversityManagementSystem06.BusinessLogics.Course
         {
             return aCourseGateway.GetCourseNameByCourseCode(courseCode);
         }
-
-
         public List<CourseModel> GetCourseListByDeptId(int deptId)
         {
             return aCourseGateway.GetCourseListByDeptId(deptId);
@@ -59,9 +52,7 @@ namespace UniversityManagementSystem06.BusinessLogics.Course
         public List<CourseModel> GetCourseListNotAssignedByDeptId(int deptId)
         {
             return aCourseGateway.GetCourseListNotAssignedByDeptId(deptId);
-        }
-        
-
+        }       
         public string SaveCourse(CourseModel aCourseModel)
         {
             string message = "";
@@ -87,32 +78,25 @@ namespace UniversityManagementSystem06.BusinessLogics.Course
             }
             return message;
         }
-
         public CourseModel GetCourseByCourseId(int courseId)
         {
             CourseModel aCourseModel = new CourseModel();
             aCourseModel = aCourseGateway.GetSingleCourseModel(courseId);
             return aCourseModel;
         }
-
         public int DeleteCourse(int courseId)
         {
             //          string message = "";
-
             int rowAffected = aCourseGateway.DeleteCourse(courseId);
-
-
             //return message;
             return rowAffected;
         }
-
         public List<SemesterModel> GetAllSemesters()
         {
             List<SemesterModel> semesters = new List<SemesterModel>();
             semesters = aSemesterManager.GetAllSemesters();
             return semesters;
         }
-
         public CourseModel GetCourseModelByCourseId(int courseId)
         {
             return aCourseGateway.GetSingleCourseModel(courseId);
@@ -120,6 +104,10 @@ namespace UniversityManagementSystem06.BusinessLogics.Course
         public int GetCourseCreditByCourseId(int courseId)
         {
             return aCourseGateway.GetCourseCreditByCourseId(courseId);
+        }
+        public List<CourseStatisticsModel> GetCourseStaticsByDeptId(int deptId)
+        {
+            return aCourseGateway.GetCourseStaticsByDeptId(deptId);
         }
     }
 }

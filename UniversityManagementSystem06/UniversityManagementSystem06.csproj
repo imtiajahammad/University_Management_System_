@@ -167,6 +167,7 @@
     </Compile>
     <Compile Include="Models\CourseAssignToTeacherModel.cs" />
     <Compile Include="Models\CourseModel.cs" />
+    <Compile Include="Models\CourseStatisticsModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\DesignationModel.cs" />
     <Compile Include="Models\SemesterModel.cs" />

@@ -132,7 +132,20 @@ namespace UniversityManagementSystem06.Controllers
             {
                 return null;
             }
+        }
 
+        [HttpGet]
+        public ActionResult ViewCourseStatistics()
+        {
+            List<CourseStatisticsModel> courseStatisticsInfo = new List<CourseStatisticsModel>();
+            //courseStatisticsInfo = aCourseManager.;
+            if (courseStatisticsInfo.Count == 0)
+            {
+                string message = "No data in the database for courses";
+                ViewBag.MessageViewCourses = message;
+            }
+            ViewBag.courseStatisticsList = courseStatisticsInfo;
+            return View();
         }
     }
 }
