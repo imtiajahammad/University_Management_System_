@@ -223,9 +223,9 @@ namespace UniversityManagementSystem06.Controllers
 
 
 
-            ViewBag.Departments = aCourseAssignManager.GetAllDepartments();
+            /*ViewBag.Departments = aCourseAssignManager.GetAllDepartments();
             ViewBag.Teachers = aCourseAssignManager.GetAllTeachers();
-            ViewBag.CourseCodeList = aCourseAssignManager.GetAllCourseCodes();
+            ViewBag.CourseCodeList = aCourseAssignManager.GetAllCourseCodes();*/
             return View(aCourseAssignToTeacherModel);
         }
         [HttpPost]
