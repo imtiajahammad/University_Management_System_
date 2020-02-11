@@ -78,7 +78,7 @@
                     <option value="0"></option>
                     @foreach (var a in courseCodes)
                     {
-                        if (a.courseId == Model.courseId)
+                        if (a.courseId == Model.CourseId)
                         {
                             <option selected value="@a.courseId">@a.courseCode</option>
                         }
